@@ -56,12 +56,12 @@ ifneq (,$(DISPLAY_FEATURE_MAX_ROT_SESSION))
     common_flags += -DTARGET_SPECIFIC_MAX_ROT_SESSION=$(DISPLAY_FEATURE_MAX_ROT_SESSION)
 endif
 
-ifeq ($(call is-vendor-board-platform,QCOM),true)
+#ifeq ($(call is-vendor-board-platform,QCOM),true)
 # This check is to pick the kernel headers from the right location.
 # If the macro above is defined, we make the assumption that we have the kernel
 # available in the build tree.
 # If the macro is not present, the headers are picked from hardware/qcom/msmXXXX
 # failing which, they are picked from bionic.
-    common_deps += $(BOARD_KERNEL_HEADER_DEPENDENCIES)
-    kernel_includes += $(BOARD_KERNEL_HEADER_DIR)
-endif
+    common_deps += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+    kernel_includes += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+#endif
